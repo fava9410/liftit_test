@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+#from django.conf.urls import url
+#from liftit_test.views import *
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    #path('admin/', admin.site.urls),
+    #url(r'^$', home.as_view())
+    path('', views.home, name='index'),
+    path('about', views.about, name='about')
 ]
