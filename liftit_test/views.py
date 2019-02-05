@@ -8,4 +8,4 @@ def home(request):
 
 def about(request):
     context = {}
-    return render(request,"about.html", context)
+    return render(request,"about-us.html", context)

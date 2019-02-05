@@ -23,5 +23,6 @@ urlpatterns = [
     #path('admin/', admin.site.urls),
     #url(r'^$', home.as_view())
     path('', views.home, name='index'),
+    path('home', views.home, name='home'),
     path('about', views.about, name='about')
 ]
