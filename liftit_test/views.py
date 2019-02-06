@@ -1,3 +1,4 @@
+import random
 from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from .forms import register_owner_form, register_vehicle_form
@@ -62,3 +63,20 @@ def check_owner(request):
 		return HttpResponse(True)
 	else:
 		return HttpResponse(False)
+
+def vehicles_by_brand_report(request):
+	total_vehicles = Vehicle.objects.all().count()
+	total_brands = Vehicle_Brand.objects.all().order_by('name')
+
+	data = []
+	for tb in total_brands:
+		color = random.randint(1,4)
+		vehicle_by_brand_count = Vehicle.objects.filter(brand = tb).count()
+		data.append({'brand': tb.name,
+					 'amount': '%s/%s' % (vehicle_by_brand_count,total_vehicles),
+					 'percentage': str(round(((vehicle_by_brand_count/total_vehicles)*100),2)),
+					 'color':color})
+
+	context = {}
+	context['datatable'] = data
+	return render(request, "vehicles_by_brand_report.html", context)

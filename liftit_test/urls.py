@@ -29,4 +29,5 @@ urlpatterns = [
     path('register_vehicle', views.register_vehicle, name='register_vehicle'),
     path('check_license_plate', views.check_license_plate, name='check_license_plate'),
     path('check_owner', views.check_owner, name='check_owner'),
+    path('vehicles_by_brand_report', views.vehicles_by_brand_report, name='vehicles_by_brand_report'),
 ]
