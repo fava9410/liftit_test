@@ -19,13 +19,8 @@ def register_owner(request):
 
 	if request.method == 'POST':
 		form = register_owner_form(request.POST or None)
-		print("eoeoeoe")
 		if form.is_valid():
-			print('hola')
-			#form.save()
-		else:
-			#print(form)
-			print(form.errors)
+			form.save()
 
 		return render(request,"register_owner.html", context)
 	else:
@@ -41,13 +36,8 @@ def register_vehicle(request):
 
 	if request.method == 'POST':
 		form = register_vehicle_form(request.POST or None)
-		print("eoeoeoe")
 		if form.is_valid():
-			print('hola')
-			#form.save()
-		else:
-			print(form)
-			print(form.errors)
+			form.save()
 
 		return render(request,"register_vehicle.html", context)
 	else:
@@ -65,8 +55,10 @@ def check_license_plate(request):
 @csrf_exempt
 def check_owner(request):
 	owner_document = request.POST.get("number_document")
+	owner_type_document = request.POST.get("type_document")
+	print(request.POST)
 
-	if Owner.objects.filter(number_document=owner_document).exists():
+	if Owner.objects.filter(number_document=owner_document, type_document_id = owner_type_document).exists():
 		return HttpResponse(True)
 	else:
 		return HttpResponse(False)

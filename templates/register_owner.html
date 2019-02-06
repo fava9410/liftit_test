@@ -26,8 +26,8 @@
 								<form action="register_owner" method="POST">{% csrf_token %}
 									<div class="input-group-icon mt-10">
 										<div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
-										<div class="form-select" name="type_document" id="type_document">
-											<select>
+										<div class="form-select">
+											<select name="type_document" id="type_document">
                                                 {% for td in types_document %}
 													<option value="{{td.id}}" >{{td.name}}</option>
 												{% endfor %}
@@ -47,7 +47,7 @@
 									</div>
 
 									<div class="mt-10">
-										<input type="submit" value="Submit" class="genric-btn success">
+										<input type="submit" id="owner_submit" value="Submit" disabled>
 									</div>
 								</form>
 							</div>
