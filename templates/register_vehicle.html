@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+	{% load static %}
     {% block content %}
 
     	<!--================Home Banner Area =================-->
@@ -7,7 +8,7 @@
 				<div class="banner_inner d-flex align-items-center">
 					<div class="container">
 						<div class="banner_content text-center">
-							<h2>Register Owner</h2>
+							<h2>Register Vehicle</h2>
 						</div>
 					</div>
 				</div>
@@ -21,23 +22,29 @@
 					<div class="section-top-border">
 						<div class="row">
 							<div class="col-lg-8 col-md-8">
-								<h3 class="mb-30 title_color">Datos Personales</h3>
-								<form action="register_owner" method="POST">{% csrf_token %}
+								<h3 class="mb-30 title_color">Datos Vehiculo</h3>
+								<form action="register_vehicle" method="POST">{% csrf_token %}
 									<div class="mt-10">
-										<input type="text" name="first_name" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input">
-									</div>
-									<div class="mt-10">
-										<input type="text" name="last_name" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
-									</div>
-									<div class="mt-10">
-										<input type="text" name="number_document" placeholder="Number Document" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Number Document'" required class="single-input">
+										<input type="text" pattern=".{6}" title="La placa debe tener 6 caracteres" id="license_plate" name="license_plate" placeholder="License Plate" onfocus="this.placeholder = ''" onblur="this.placeholder = 'License Plate'" required class="single-input">
+										<br>
+										<label id="error_message"></label>
 									</div>
 									<div class="input-group-icon mt-10">
 										<div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
-										<div class="form-select" name="type_document" id="type_document">
+										<div class="form-select" id="brand">
 											<select>
-                                                {% for td in types_document %}
-													<option value="{{td.id}}" >{{td.name}}</option>
+                                                {% for vb in vehicle_brands %}
+													<option value="{{vb.id}}" >{{vb.name}}</option>
+												{% endfor %}
+											</select>
+										</div>
+									</div>
+									<div class="input-group-icon mt-10">
+										<div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+										<div class="form-select" id="type">
+											<select>
+                                                {% for vt in vehicle_types %}
+													<option value="{{vt.id}}" >{{vt.name}}</option>
 												{% endfor %}
 											</select>
 										</div>
@@ -52,4 +59,6 @@
 				</div>
 			</div>
 
+			<script src="{% static 'js/register_vehicle.js' %}"></script>
     {% endblock %}
+

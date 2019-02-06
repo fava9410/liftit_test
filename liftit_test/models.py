@@ -11,14 +11,14 @@ class Owner(models.Model):
 
 class Vehicle_Type(models.Model):
     name = models.CharField(max_length = 20)
-    description = models.CharField(max_length = 50)
+    #description = models.CharField(max_length = 50)
 
 class Vehicle_Brand(models.Model):
     name = models.CharField(max_length = 20)
-    description = models.CharField(max_length = 50)
+    #description = models.CharField(max_length = 50)
 
 class Vehicle(models.Model):
     license_plate = models.CharField(max_length = 8, primary_key = True)
     brand = models.ForeignKey(Vehicle_Brand, on_delete=models.CASCADE)
     type = models.ForeignKey(Vehicle_Type, on_delete=models.CASCADE)
-    owner = models.ForeignKey(Owner, on_delete=models.CASCADE)
+    #owner = models.ForeignKey(Owner, on_delete=models.CASCADE)
