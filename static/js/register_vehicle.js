@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-	console.log( "ready!" );
 
     $("#license_plate").val("")
 
@@ -11,7 +10,6 @@ $( document ).ready(function() {
         url:"check_license_plate",
         data:{"license_plate":$("#license_plate").val()},
         success: function (response) {
-            console.log(response)
             if(response == "True"){
                 console.log("entre")
                 $("#error_message").text("La placa ya existe");

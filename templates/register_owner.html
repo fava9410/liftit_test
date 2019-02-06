@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-    {% block content %}
+    {% load static %}
+	{% block content %}
 
     	<!--================Home Banner Area =================-->
         <section class="banner_area">
@@ -23,15 +24,6 @@
 							<div class="col-lg-8 col-md-8">
 								<h3 class="mb-30 title_color">Datos Personales</h3>
 								<form action="register_owner" method="POST">{% csrf_token %}
-									<div class="mt-10">
-										<input type="text" name="first_name" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input">
-									</div>
-									<div class="mt-10">
-										<input type="text" name="last_name" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
-									</div>
-									<div class="mt-10">
-										<input type="text" name="number_document" placeholder="Number Document" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Number Document'" required class="single-input">
-									</div>
 									<div class="input-group-icon mt-10">
 										<div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
 										<div class="form-select" name="type_document" id="type_document">
@@ -43,6 +35,18 @@
 										</div>
 									</div>
 									<div class="mt-10">
+										<input type="text" id="number_document" name="number_document" placeholder="Number Document" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Number Document'" required class="single-input">
+										<br>
+										<label id="error_message"></label>
+									</div>
+									<div class="mt-10">
+										<input type="text" name="first_name" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input">
+									</div>
+									<div class="mt-10">
+										<input type="text" name="last_name" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
+									</div>
+
+									<div class="mt-10">
 										<input type="submit" value="Submit" class="genric-btn success">
 									</div>
 								</form>
@@ -52,4 +56,5 @@
 				</div>
 			</div>
 
+			<script src="{% static 'js/register_owner.js' %}"></script>
     {% endblock %}
