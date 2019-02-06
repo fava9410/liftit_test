@@ -18,10 +18,10 @@ def register_owner(request):
 	context['types_document'] = tp
 
 	if request.method == 'POST':
-		form = register_owner_form(request.POST or None)
+		form = register_owner_form(request.POST, request.FILES)
+		print(request.FILES)
 		if form.is_valid():
 			form.save()
-
 		return render(request,"register_owner.html", context)
 	else:
 		return render(request,"register_owner.html", context)
