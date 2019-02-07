@@ -50,7 +50,12 @@
 										</div>
 									</div>
 									<div class="mt-10">
-										<input type="submit" id="vehicle_submit" value="Submit" disabled>
+										<input type="text" id="owner" name="owner" placeholder="OwnerNumber Document" required class="single-input">
+										<br>
+										<label id="error_message_owner"></label>
+									</div>
+									<div class="mt-10">
+										<input type="submit" id="vehicle_submit" value="Register" disabled>
 									</div>
 								</form>
 							</div>
@@ -58,7 +63,6 @@
 					</div>
 				</div>
 			</div>
-
 			<script src="{% static 'js/register_vehicle.js' %}"></script>
     {% endblock %}
 

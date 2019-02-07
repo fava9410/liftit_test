@@ -58,10 +58,8 @@ def check_license_plate(request):
 @csrf_exempt
 def check_owner(request):
 	owner_document = request.POST.get("number_document")
-	owner_type_document = request.POST.get("type_document")
-	print(request.POST)
 
-	if Owner.objects.filter(number_document=owner_document, type_document_id = owner_type_document).exists():
+	if Owner.objects.filter(number_document=owner_document).exists():
 		return HttpResponse(True)
 	else:
 		return HttpResponse(False)

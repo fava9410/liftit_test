@@ -10,8 +10,8 @@ $( document ).ready(function() {
             cache:false,
             url:"check_owner",
             data:{
-                "number_document":$("#number_document").val(),
-                "type_document":$("#type_document").val()},
+                "number_document":$("#number_document").val()
+                },
             success: function (response) {
 
                 if(response == "True"){
