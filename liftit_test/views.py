@@ -1,7 +1,7 @@
 import random
 from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework import viewsets
+from rest_framework import generics
 from .forms import register_owner_form, register_vehicle_form
 from .models import Type_Document, Vehicle_Type, Vehicle_Brand, Vehicle, Owner
 from .serializer import VehicleSerializer
@@ -88,10 +88,9 @@ def list_vehicles_by_brand_report(request):
 	context['brands'] = total_brands
 	return render(request, "list_vehicles_by_brand_report.html", context)
 
-class filter_vehicles_by_brand(viewsets.ModelViewSet):
-	"""
-	API endpoint that allows users to be viewed or edited.
-	"""
-	#print(request.data)
-	queryset = Vehicle.objects.all()
+class filter_vehicles_by_brand(generics.ListAPIView):
 	serializer_class = VehicleSerializer
+
+	def get_queryset(self):
+		brand = self.kwargs['brand']
+		return Vehicle.objects.filter(brand_id=brand)
