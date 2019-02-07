@@ -1,8 +1,10 @@
 import random
 from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework import viewsets
 from .forms import register_owner_form, register_vehicle_form
 from .models import Type_Document, Vehicle_Type, Vehicle_Brand, Vehicle, Owner
+from .serializer import VehicleSerializer
 
 def home(request):
     context = {}
@@ -67,7 +69,6 @@ def check_owner(request):
 def vehicles_by_brand_report(request):
 	total_vehicles = Vehicle.objects.all().count()
 	total_brands = Vehicle_Brand.objects.all().order_by('name')
-
 	data = []
 	for tb in total_brands:
 		color = random.randint(1,4)
@@ -80,3 +81,17 @@ def vehicles_by_brand_report(request):
 	context = {}
 	context['datatable'] = data
 	return render(request, "vehicles_by_brand_report.html", context)
+
+def list_vehicles_by_brand_report(request):
+	context = {}
+	total_brands = Vehicle_Brand.objects.all().order_by('name')
+	context['brands'] = total_brands
+	return render(request, "list_vehicles_by_brand_report.html", context)
+
+class filter_vehicles_by_brand(viewsets.ModelViewSet):
+	"""
+	API endpoint that allows users to be viewed or edited.
+	"""
+	#print(request.data)
+	queryset = Vehicle.objects.all()
+	serializer_class = VehicleSerializer

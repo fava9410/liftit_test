@@ -14,10 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-#from django.conf.urls import url
-#from liftit_test.views import *
+from django.urls import include, path
+from rest_framework import routers
 from . import views
+
+router = routers.DefaultRouter()
+router.register(r'filter_vehicles_by_brand', views.filter_vehicles_by_brand)
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
@@ -30,4 +32,8 @@ urlpatterns = [
     path('check_license_plate', views.check_license_plate, name='check_license_plate'),
     path('check_owner', views.check_owner, name='check_owner'),
     path('vehicles_by_brand_report', views.vehicles_by_brand_report, name='vehicles_by_brand_report'),
+    path('list_vehicles_by_brand_report', views.list_vehicles_by_brand_report, name='list_vehicles_by_brand_report'),
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+
 ]

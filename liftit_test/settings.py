@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'liftit_test',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "assets")
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 MEDIA_URL  = '/media/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
