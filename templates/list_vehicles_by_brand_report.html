@@ -1,6 +1,8 @@
 {% extends "base.html" %}
     {% load static %}
 	{% block content %}
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
+        <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
 
     	<!--================Home Banner Area =================-->
         <section class="banner_area">
@@ -37,13 +39,27 @@
                                 <div class="mt-10">
                                     <input type="button" id="search" value="Search">
                                 </div>
-
                         </div>
+                    </div>
+                </div>
+                <div class="section-top-border">
+                    <div class="progress-table-wrap">
+                        <table id="vehicles" class="table table-striped table-bordered" style="width:100%" data-server-side="true" data-ajax="/filter_vehicles_by_brand/1/?format=datatables">
+                            <thead>
+                                <tr>
+                                    <th data-data="license_plate">Rank</th>
+                                    <th data-data="brand_name">Album name</th>
+                                    <th data-data="type_name">Year</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
 
+        <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script src="//cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
         <script src="{% static 'js/list_vehicles_by_brand_report.js' %}"></script>
 
     {% endblock %}

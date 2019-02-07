@@ -1,4 +1,5 @@
 $( document ).ready(function() {
+    $('#vehicles').DataTable();
 
 	$("#search").click(function(){
         $.ajax({
