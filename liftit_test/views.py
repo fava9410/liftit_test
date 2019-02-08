@@ -1,3 +1,4 @@
+import csv
 import random
 from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -92,3 +93,16 @@ class filter_vehicles_by_brand(generics.ListAPIView):
 	def get_queryset(self):
 		brand = self.kwargs['brand']
 		return Vehicle.objects.filter(brand_id=brand)
+
+def export_report_to_csv(request):
+	vehicles = Vehicle.objects.all()
+	response = HttpResponse(content_type="text/csv")
+	response["Content-Disposition"] = "attachment; filename='vehicles.csv'"
+
+	writer = csv.writer(response,delimiter=",")
+	writer.writerow(["License Plate","Brand","Type","Owner's Type Document", "Owner's Number Document"])
+
+	for vehicle in vehicles:
+		writer.writerow([vehicle.license_plate, vehicle.brand.name, vehicle.type.name, vehicle.owner.type_document.name, vehicle.owner.number_document])
+
+	return response

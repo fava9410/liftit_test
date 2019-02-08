@@ -35,6 +35,7 @@ urlpatterns = [
     path('vehicles_by_brand_report', views.vehicles_by_brand_report, name='vehicles_by_brand_report'),
     path('list_vehicles_by_brand_report', views.list_vehicles_by_brand_report, name='list_vehicles_by_brand_report'),
     url('^filter_vehicles_by_brand/(?P<brand>.+)/$', filter_vehicles_by_brand.as_view()),
+    path('export_report_to_csv', views.export_report_to_csv, name='export_report_to_csv'),
     #path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 
