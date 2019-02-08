@@ -15,16 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.urls import include, path
-from rest_framework import routers
 from . import views
 from .views import filter_vehicles_by_brand
 
-#router = routers.DefaultRouter()
-#router.register(r'filter_vehicles_by_brand', views.filter_vehicles_by_brand)
-
 urlpatterns = [
-    #path('admin/', admin.site.urls),
-    #url(r'^$', home.as_view())
     path('', views.home, name='index'),
     path('home', views.home, name='home'),
     path('about', views.about, name='about'),
@@ -36,7 +30,5 @@ urlpatterns = [
     path('list_vehicles_by_brand_report', views.list_vehicles_by_brand_report, name='list_vehicles_by_brand_report'),
     url('^filter_vehicles_by_brand/(?P<brand>.+)/$', filter_vehicles_by_brand.as_view()),
     path('export_report_to_csv', views.export_report_to_csv, name='export_report_to_csv'),
-    #path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-
 ]

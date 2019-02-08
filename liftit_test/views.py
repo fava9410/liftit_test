@@ -32,8 +32,8 @@ def register_owner(request):
 
 @csrf_exempt
 def register_vehicle(request):
-	vb = Vehicle_Brand.objects.all()
-	vt = Vehicle_Type.objects.all()
+	vb = Vehicle_Brand.objects.all().order_by('name')
+	vt = Vehicle_Type.objects.all().order_by('name')
 	context = {}
 	context['vehicle_brands'] = vb
 	context['vehicle_types'] = vt
